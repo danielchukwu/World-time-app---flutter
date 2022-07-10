@@ -11,9 +11,29 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
   void getTime() async {
-    var url = Uri.parse('https://jsonplaceholder.typicode.com/todos/1');
+    var url = Uri.parse('https://worldtimeapi.org/api/timezone/Europe/London');
     var response = await http.get(url);
     Map data = jsonDecode(response.body);
+
+    // get datetime and offset
+    String datetime = data['datetime'];
+    String offset = data['utc_offset'];
+
+    // create DateTime object
+    DateTime now = DateTime.parse(datetime);
+
+    // grab offset first 3 values e.g +01:00 --> 01    or -01:00 --> -01
+    int offInt;
+
+    if (offset[0] == "+") {
+      offInt = int.parse(offset.substring(1, 3));
+    } else {
+      offInt = int.parse(offset.substring(0, 3));
+    }
+    print("off_int: $offInt");
+
+    print('old DateTime: $now');
+    now = now.add(Duration(hours: offInt));
   }
 
   @override
