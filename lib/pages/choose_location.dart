@@ -10,21 +10,23 @@ class ChooseLocation extends StatefulWidget {
 class _ChooseLocationState extends State<ChooseLocation> {
   int counter = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    print("initState just fired!");
+  void getData() async {
+    await Future.delayed(Duration(seconds: 3), () {
+      print({'No': 2, 'name': 'john doe', 'age': 34});
+    });
+    print({'No': 3});
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    print("dispose just fired!");
+  void initState() {
+    super.initState();
+    getData();
   }
 
   @override
   Widget build(BuildContext context) {
-    print("build just fired!");
+    // print("build just fired!");
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Choose a Location'),
