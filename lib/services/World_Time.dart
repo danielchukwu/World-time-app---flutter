@@ -1,4 +1,5 @@
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'dart:convert';
 
 class WorldTime {
@@ -14,7 +15,6 @@ class WorldTime {
     try {
       var urll = Uri.parse('https://worldtimeapi.org/api/timezone/$url');
       var response = await http.get(urll);
-      print('..............response: ${response.body}');
       Map data = jsonDecode(response.body);
 
       // get datetime and offset
@@ -35,7 +35,10 @@ class WorldTime {
       now = now.add(Duration(hours: offInt));
 
       // Set time
-      time = now.toString();
+      time = DateFormat.jm().format(now);
+
+      print('..............response: ${response.body}');
+      print('..............time: $time');
     } catch (e) {
       time = "could not fetch data";
     }
