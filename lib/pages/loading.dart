@@ -26,11 +26,11 @@ class _LoadingState extends State<Loading> {
     } else {
       // Redirect home with data
       // ignore: use_build_context_synchronously
-      // Navigator.pushReplacementNamed(context, '/home', arguments: {
-      //   'location': instance.location,
-      //   'time': instance.time,
-      //   'flag': instance.flag,
-      // });
+      Navigator.pushReplacementNamed(context, '/home', arguments: {
+        'location': instance.location,
+        'time': instance.time,
+        'flag': instance.flag,
+      });
     }
   }
 
