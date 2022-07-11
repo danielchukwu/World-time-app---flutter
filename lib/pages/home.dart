@@ -16,45 +16,55 @@ class _HomeState extends State<Home> {
     print('Data Recieved: $data');
 
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 180.0, 0, 0),
-          child: Column(
-            children: [
-              TextButton.icon(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/choose-location');
-                },
-                icon: const Icon(Icons.edit_location),
-                label: const Text(
-                  'Edit Location',
-                  style: TextStyle(
-                    letterSpacing: 2.0,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+      body: SafeArea(
+        child: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/day.jpg'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 150.0, 0, 0),
+              child: Column(
                 children: [
-                  // ignore: Location Flag should be here
+                  TextButton.icon(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/choose-location');
+                    },
+                    icon: const Icon(Icons.edit_location),
+                    label: const Text(
+                      'Edit Location',
+                      style: TextStyle(
+                        letterSpacing: 2.0,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // ignore: Location Flag should be here
+                      Text(
+                        data['location'],
+                        style: const TextStyle(
+                          fontSize: 28.0,
+                          letterSpacing: 2.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20.0),
                   Text(
-                    data['location'],
+                    data['time'],
                     style: const TextStyle(
-                      fontSize: 28.0,
-                      letterSpacing: 2.0,
+                      fontSize: 66.0,
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 20.0),
-              Text(
-                data['time'],
-                style: const TextStyle(
-                  fontSize: 66.0,
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),
