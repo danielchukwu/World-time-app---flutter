@@ -45,7 +45,8 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Color.fromRGBO(36, 26, 86, 1),
+      // backgroundColor: Color.fromRGBO(36, 26, 86, 1),
+      backgroundColor: Colors.black87,
       body: Padding(
         padding: EdgeInsets.all(30.0),
         child: SpinKitSquareCircle(
