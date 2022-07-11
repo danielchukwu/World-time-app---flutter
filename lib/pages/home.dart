@@ -9,18 +9,25 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Map data = {};
+  late String bgImage;
 
   @override
   Widget build(BuildContext context) {
     data = ModalRoute.of(context)!.settings.arguments as Map;
-    print('Data Recieved: $data');
+
+    // set background image
+    bgImage = data['isDaytime'] ? 'day.jpg' : 'night.jpg';
+    // Set Text Color
+    Color txtColor = data['isDaytime'] ? Colors.black : Colors.white;
+    // print('Data Recieved: $data');
 
     return Scaffold(
+      backgroundColor: txtColor,
       body: SafeArea(
         child: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/day.jpg'),
+              image: AssetImage('assets/$bgImage'),
               fit: BoxFit.cover,
             ),
           ),
@@ -33,12 +40,10 @@ class _HomeState extends State<Home> {
                     onPressed: () {
                       Navigator.pushNamed(context, '/choose-location');
                     },
-                    icon: const Icon(Icons.edit_location),
-                    label: const Text(
+                    icon: Icon(Icons.edit_location, color: txtColor),
+                    label: Text(
                       'Edit Location',
-                      style: TextStyle(
-                        letterSpacing: 2.0,
-                      ),
+                      style: TextStyle(letterSpacing: 2.0, color: txtColor),
                     ),
                   ),
                   const SizedBox(height: 20.0),
@@ -48,9 +53,10 @@ class _HomeState extends State<Home> {
                       // ignore: Location Flag should be here
                       Text(
                         data['location'],
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 28.0,
                           letterSpacing: 2.0,
+                          color: txtColor,
                         ),
                       ),
                     ],
@@ -58,8 +64,9 @@ class _HomeState extends State<Home> {
                   const SizedBox(height: 20.0),
                   Text(
                     data['time'],
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 66.0,
+                      color: txtColor,
                     ),
                   ),
                 ],

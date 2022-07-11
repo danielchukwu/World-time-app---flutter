@@ -3,10 +3,11 @@ import 'package:intl/intl.dart';
 import 'dart:convert';
 
 class WorldTime {
-  late String location;
-  late String time;
-  late String flag;
-  late String url;
+  late String location; // name of location
+  late String time; // time of location
+  late String flag; // flag icon of location
+  late String url; // url endpoint to get data on location
+  late bool isDaytime;
 
   WorldTime({required this.location, required this.flag, required this.url});
 
@@ -36,9 +37,12 @@ class WorldTime {
 
       // Set time
       time = DateFormat.jm().format(now);
+      print(now.hour);
+      isDaytime = (now.hour > 6 && now.hour < 18) ? true : false;
 
       print('..............response: ${response.body}');
       print('..............time: $time');
+      print('..............isDaytime: $isDaytime');
     } catch (e) {
       time = "could not fetch data";
     }
