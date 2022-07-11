@@ -37,7 +37,6 @@ class WorldTime {
       // Set time
       time = now.toString();
     } catch (e) {
-      print('Caught an error: $e');
       time = "could not fetch data";
     }
   }
