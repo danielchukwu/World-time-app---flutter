@@ -14,8 +14,9 @@ class WorldTime {
     var urll = Uri.parse('https://worldtimeapi.org/api/timezone/$url');
     print('Debuging url: $urll');
     var response = await http.get(urll);
-    print("response: $response");
     Map data = jsonDecode(response.body);
+    print("statusCode: ${response.statusCode}");
+    print("response: $data");
 
     // get datetime and offset
     String datetime = data['datetime'];

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:worldtime/services/World_Time.dart';
 
 class Loading extends StatefulWidget {
@@ -10,14 +9,18 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  @override
-  void initState() async {
-    super.initState();
-
+  void setupWorldTime() async {
     WorldTime instance = WorldTime(
         location: 'Berlin', flag: "berlin_flag", url: "Europe/Berlin");
     await instance.getTime();
     print(instance.time);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    setupWorldTime();
   }
 
   @override
