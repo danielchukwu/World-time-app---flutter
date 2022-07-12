@@ -37,12 +37,11 @@ class WorldTime {
 
       // Set time
       time = DateFormat.jm().format(now);
-      print(now.hour);
       isDaytime = (now.hour > 6 && now.hour < 18) ? true : false;
 
-      print('..............response: ${response.body}');
-      print('..............time: $time');
-      print('..............isDaytime: $isDaytime');
+      // print('..............response: ${response.body}');
+      // print('..............time: $time');
+      // print('..............isDaytime: $isDaytime');
     } catch (e) {
       time = "could not fetch data";
     }

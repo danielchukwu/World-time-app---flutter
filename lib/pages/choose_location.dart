@@ -21,13 +21,24 @@ class _ChooseLocationState extends State<ChooseLocation> {
   ];
 
   Widget createLocationCard(location) {
-    return Card(
-      // elevation: 0.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5.0),
-      ),
-      child: GestureDetector(
-        onTap: () => {print('display ${location.location}')},
+    return GestureDetector(
+      onTap: () async {
+        WorldTime instance = location;
+        await instance.getTime();
+        // print("it's ${instance.time} at ${instance.location}");
+
+        // Navigate back to home
+        Navigator.pop(context, {
+          'location': instance.location,
+          'time': instance.time,
+          'isDaytime': instance.isDaytime,
+        });
+      },
+      child: Card(
+        // elevation: 0.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: Row(
