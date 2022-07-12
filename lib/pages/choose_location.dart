@@ -11,7 +11,7 @@ class ChooseLocation extends StatefulWidget {
 class _ChooseLocationState extends State<ChooseLocation> {
   List<WorldTime> locations = [
     WorldTime(location: 'London', flag: 'uk.png', url: 'Europe/London'),
-    WorldTime(location: 'Athenes', flag: 'Greece.png', url: 'Europe/Berlin'),
+    WorldTime(location: 'Athenes', flag: 'greece.png', url: 'Europe/Berlin'),
     WorldTime(location: 'Cairo', flag: 'egypt.png', url: 'Africa/Cairo'),
     WorldTime(location: 'Nairobi', flag: 'kenya.png', url: 'Africa/Nairobi'),
     WorldTime(location: 'Chicago', flag: 'usa.png', url: 'America/Chicago'),
@@ -30,7 +30,19 @@ class _ChooseLocationState extends State<ChooseLocation> {
         onTap: () => {print('display ${location.location}')},
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-          child: Text(location.location),
+          child: Row(
+            children: [
+              CircleAvatar(
+                backgroundImage: AssetImage('assets/flags/${location.flag}'),
+                radius: 20,
+              ),
+              SizedBox(width: 20),
+              Text(
+                location.location,
+                style: const TextStyle(fontSize: 20, letterSpacing: 2.0),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -48,12 +60,13 @@ class _ChooseLocationState extends State<ChooseLocation> {
         elevation: 0.0,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: locations
-              .map((location) => createLocationCard(location))
-              .toList(),
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: SingleChildScrollView(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: locations
+                  .map((location) => createLocationCard(location))
+                  .toList()),
         ),
       ),
     );
